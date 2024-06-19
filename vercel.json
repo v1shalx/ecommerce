@@ -3,26 +3,17 @@
     "builds": [
       {
         "src": "./backend/server.js",
-        "use": "@vercel/node",
-        "config": {
-          "includeFiles": ["backend/**"]
-        }
+        "use": "@vercel/node"
       },
       {
-        "src": "./frontend/build/**/*",
+        "src": "./frotend/build",
         "use": "@vercel/static"
       }
     ],
-    "routes": [
+    "rewrites": [
       {
-        "src": "/api/(.*)",
-        "dest": "/backend/server.js"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/frontend/build/$1"
+        "source": "/(.*)",
+        "destination": "/backend/server.js"
       }
-    ],
-    "installCommand": "npm install --legacy-peer-deps"
+    ]
   }
-  
